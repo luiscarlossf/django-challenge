@@ -6,5 +6,5 @@ router = routers.DefaultRouter()
 router.register(r'plans', RegularPlanViewset)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
