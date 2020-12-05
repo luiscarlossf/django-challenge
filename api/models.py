@@ -37,8 +37,8 @@ class RegularPlan(models.Model):
     peak_price = models.FloatField("Peak Price")
     unit = models.CharField("Unit", max_length=3, choices=UNIT_CHOICES)
     valid = models.BooleanField("Valid")
-    publish = models.BooleanField("Publish")
-    vat = models.IntegerField("Vat", validators=[
+    publish = models.BooleanField("Publish", help_text="Indicates if plan can be showed to everyone.")
+    vat = models.IntegerField("Vat", help_text="Choose a value from 1 to 100.", validators=[
         MinValueValidator(1,'Enter with a value greater than 1 and less than 100'),
         MaxValueValidator(100, 'Enter with a value greater than 1 and less than 100'),
     ])
