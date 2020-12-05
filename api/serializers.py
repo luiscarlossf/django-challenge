@@ -19,5 +19,4 @@ class RegularPlanSerializer(serializers.ModelSerializer):
             'valid',
             'publish',
             'vat',
-            'owner',
         ]
