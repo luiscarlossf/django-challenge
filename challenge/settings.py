@@ -82,7 +82,7 @@ DATABASES = {
         'USER': os.environ['POSTGRES_USER'],
         'PASSWORD': os.environ['POSTGRES_PASSWORD'],
         'NAME': os.environ['POSTGRES_DB'],
-        'HOST': 'postgres_db',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
         'TEST': {
             'NAME': os.environ['POSTGRES_TEST_DB'],
@@ -132,3 +132,14 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "djangochallenge2020@gmail.com"
+EMAIL_HOST_PASSWORD = "miio@dmin2020"
