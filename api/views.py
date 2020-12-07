@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.decorators import action
+from .tasks import send_email_task
 
 class RegularPlanViewset(viewsets.ModelViewSet):
     """
@@ -49,6 +50,8 @@ class RegularPlanViewset(viewsets.ModelViewSet):
                 owner=user
             )
             regular_plan.save()
+            if(regular_plan.publish):
+                send_email_task.delay(regular_plan.owner.username, regular_plan.owner.email)
             return Response(serializer.data)
         else:
             return Response(serializer.errors,
@@ -76,6 +79,7 @@ class RegularPlanViewset(viewsets.ModelViewSet):
         serializer = RegularPlanSerializer(data=request.data)
         if serializer.is_valid():
             for regular_plan in RegularPlan.objects.filter(id=pk, owner=user):
+                before_publish = regular_plan.publish
                 regular_plan.name = serializer.data['name']
                 regular_plan.tar_included = serializer.data['tar_included']
                 regular_plan.subscription = serializer.data['subscription']
@@ -89,6 +93,8 @@ class RegularPlanViewset(viewsets.ModelViewSet):
                 regular_plan.publish = serializer.data['publish']
                 regular_plan.vat = serializer.data['vat']
                 regular_plan.save()
+                if not(before_publish) and regular_plan.publish:
+                    send_email_task.delay(regular_plan.owner.username, regular_plan.owner.email)
                 return Response(serializer.data)
             else:
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
