@@ -1,0 +1,8 @@
+FROM python:3.7.3
+ENV PYTHONUNBUFFERED=1
+WORKDIR /code
+COPY requirements.txt /code/
+RUN pip3 install -r requirements.txt && apt-get update && apt-get -y install cron
+RUN apt-get install gnupg && wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - && echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list && apt-get update &&apt-get install -y mongodb-org-tools
+COPY . /code/
+RUN chmod +x /code/backup.sh challenge.json
