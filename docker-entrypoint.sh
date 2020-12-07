@@ -1,7 +1,4 @@
 #!/bin/bash
-
-
-
 # Apply database migrations
 echo "Apply database migrations"
 ./manage.py migrate
