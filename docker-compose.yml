@@ -1,15 +1,45 @@
 version: "3.8"
 services:
-  postgres_db:
-    image: postgres
-    env_file: .env
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
     env_file: .env
+    container_name: django_web_1
     volumes:
       - .:/code
     ports:
       - "8000:8000"
+    entrypoint: sh /code/docker-entrypoint.sh
     depends_on:
       - postgres_db
+      - mongo_db
+  postgres_db:
+    image: postgres:13.1
+    restart: always
+    container_name: postgres_db_1
+    env_file: .env
+  mongo_db:
+    image: mongo:4.4.2
+    restart: always
+    container_name: mongo_db_1
+    env_file: .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+  cronjobs:
+    build:
+      context: .
+      dockerfile: Dockerfile-alternate
+    restart: always
+    container_name: cronjobs_1
+    env_file: .env
+    volumes:
+      - .:/code
+    entrypoint: sh /code/cronjobs-entrypoint.sh
+    depends_on:
+      - postgres_db
+      - mongo_db
+
