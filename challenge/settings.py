@@ -79,13 +79,13 @@ WSGI_APPLICATION = 'challenge.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': os.environ['POSTGRES_USER'],
-        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
-        'NAME': os.environ['POSTGRES_DB'],
-        'HOST': 'postgres_db',
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'NAME': os.getenv('POSTGRES_DB'),
+        'HOST': os.getenv('POSTGRES_HOST'),
         'PORT': '5432',
         'TEST': {
-            'NAME': os.environ['POSTGRES_TEST_DB'],
+            'NAME': os.getenv('POSTGRES_TEST_DB'),
         },
     },
 }
