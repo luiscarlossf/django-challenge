@@ -13,6 +13,7 @@ services:
     depends_on:
       - postgres_db
       - mongo_db
+      - rabbitmq_broker
   postgres_db:
     image: postgres:13.1
     restart: always
@@ -29,6 +30,11 @@ services:
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+  rabbitmq_broker:
+    image: rabbitmq:3.8.9
+    restart: always
+    container_name: rabbitmq_broker_1
+    env_file: .env
   cronjobs:
     build:
       context: .
