@@ -112,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Fortaleza'
 
 USE_I18N = True
 
@@ -133,9 +133,15 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = 'amqp://{0}:{1}@rabbitmq_broker:5672/{2}'.format(os.getenv('RABBITMQ_DEFAULT_USER'), os.getenv('RABBITMQ_DEFAULT_PASS'), os.getenv('RABBITMQ_DEFAULT_VHOST'))
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_BROKER_TRANSPORT_OPTIONS = {
+    'max_retries': 4,
+    'interval_start': 0,
+    'interval_step': 0.5,
+    'interval_max': 3,
+}
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
