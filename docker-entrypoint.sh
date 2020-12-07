@@ -6,6 +6,9 @@ echo "Apply database migrations"
 # Creating superuser
 ./manage.py shell -c "from django.contrib.auth.models import User; import os; User.objects.create_superuser(os.getenv('DJANGO_USER'), os.getenv('DJANGO_EMAIL'), os.getenv('DJANGO_PASSWORD'))"
 
+# Initiliazing celery worker
+celery -A challenge worker -l info --detach
+
 # Start server
 echo "Starting server"
 ./manage.py runserver 0.0.0.0:8000
