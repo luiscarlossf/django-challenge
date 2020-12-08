@@ -102,8 +102,8 @@ class RegularPlanViewset(viewsets.ModelViewSet):
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
                             
-    #def retrieve(self, request, pk=None):
-    #    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    def retrieve(self, request, pk=None):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def partial_update(self, request, pk=None):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
