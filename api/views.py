@@ -52,7 +52,7 @@ class RegularPlanViewset(viewsets.ModelViewSet):
             regular_plan.save()
             if(regular_plan.publish):
                 send_email_task.delay(regular_plan.owner.username, regular_plan.owner.email)
-            return Response(serializer.data)
+            return Response(RegularPlanSerializer(regular_plan).data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
@@ -95,7 +95,7 @@ class RegularPlanViewset(viewsets.ModelViewSet):
                 regular_plan.save()
                 if not(before_publish) and regular_plan.publish:
                     send_email_task.delay(regular_plan.owner.username, regular_plan.owner.email)
-                return Response(serializer.data)
+                return Response(RegularPlanSerializer(regular_plan).data)
             else:
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
         else:
