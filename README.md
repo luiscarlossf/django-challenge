@@ -47,7 +47,7 @@
 
 ![Django Challenge Screen Shot](https://github.com/luiscarlossf/django-challenge/blob/main/screenshots/api_root.png)
 
-API for list, update and create Regular plans. When a use does a plan public, a notice e-mail will be send to user. Every 5 minutes a cronjob does a backup of data, copies data from PostgresDB to a MongoDB.
+API for list, update and create Regular plans. When a user does a public regular plan, a notice e-mail will be send to user. Every 5 minutes a cronjob does a backup of data, copies data from PostgresDB to a MongoDB.
 
 
 ### Built With
@@ -75,7 +75,7 @@ See [Docker documentation](https://docs.docker.com/compose/install/) to install 
 To send e-mail for users when a Regular Plan is public, we need a e-mail to access SMTP Gmail Server.
 1. Create a [Google account](https://accounts.google.com/signup/v2/webcreateaccount?service=accountsettings&continue=https%3A%2F%2Fmyaccount.google.com%2F&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp)
 2. Go to `Settings` and then `Forwardin POP/IMAP`
-3. Enable IMAP and Save editions.
+3. `Enable IMAP` and `Save editions`.
 4. Access [here](https://myaccount.google.com/u/0/lesssecureapps?pli=1&rapt=AEjHL4OTUgsgQ56kedi8EINX35w-3ObeKavFNh_NutvB8iilFa3PTjjt4Gt-1O2FN3m7xBR9u2xYa9iEw4fOlp9Pxma4z1nPRg) 
 5. Enable `Allow less secure apps` option.
 
@@ -117,8 +117,9 @@ RABBITMQ_DEFAULT_PASS=
 ### How to run
 
 You just need to type:
+```sh
   $ docker-compose up
-
+```
 When all services are started, if you want to run the unittests:
 - Open new shell tab and execute the command
 ```sh
