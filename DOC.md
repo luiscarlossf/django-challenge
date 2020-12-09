@@ -100,15 +100,19 @@ Creates a new Regular Plan for the user authenticated.
     + plan_id (number) - ID of the Regular Plan in form of an integer
 
 + Attributes
-    + id (number) 
+    + id (number)
+    
         Identifier of Regular Plan
+        
             {
                 "type": "integer",
                 "required": false,
                 "read_only": true,
                 "label": "ID"
             }
+            
     + name (string)
+    
         A string with 200 maximum length
 
             {
@@ -121,14 +125,18 @@ Creates a new Regular Plan for the user authenticated.
             }
 
     + tar_included (boolean)
+    
             {
                 "type": "boolean",
                 "required": true,
                 "read_only": false,
                 "label": "Tar Included"
             }
+            
     + subscription (number) 
+    
         A float number. It's the monthly subscription for the User.
+        
             {
                 "type": "float",
                 "required": true,
@@ -136,8 +144,11 @@ Creates a new Regular Plan for the user authenticated.
                 "label": "Subscription",
                 "help_text": "It's the monthly subscription for the user"
             }
+            
     + cycle (string)
+    
         A string with 2 maximun length. Can be 'DD' or 'WK'. More info:
+        
             {
                 "type": "choice",
                 "required": true,
@@ -154,8 +165,11 @@ Creates a new Regular Plan for the user authenticated.
                     }
                 ]
             }
+            
     + type (string)
+    
         A string with 2 maximun length. Can be 'BT', 'TT' or 'ST'. More info:
+        
             {
                 "type": "choice",
                 "required": true,
@@ -176,6 +190,7 @@ Creates a new Regular Plan for the user authenticated.
                     }
                 ]
             }
+            
     + offer_iva (boolean)
         {
             "type": "boolean",
@@ -194,7 +209,9 @@ Creates a new Regular Plan for the user authenticated.
         }
 
     + peak_price (number)
+    
         More infos:
+        
         {
             "type": "float",
             "required": true,
@@ -204,51 +221,57 @@ Creates a new Regular Plan for the user authenticated.
 
     + unit (string)
 
-        {
-            "type": "choice",
-            "required": true,
-            "read_only": false,
-            "label": "Unit",
-            "choices": [
                 {
-                    "value": "KWH",
-                    "display_name": "Kilometers/hour"
-                },
-                {
-                    "value": "MIN",
-                    "display_name": "Minutes"
+                    "type": "choice",
+                    "required": true,
+                    "read_only": false,
+                    "label": "Unit",
+                    "choices": [
+                        {
+                            "value": "KWH",
+                            "display_name": "Kilometers/hour"
+                        },
+                        {
+                            "value": "MIN",
+                            "display_name": "Minutes"
+                        }
+                    ]
                 }
-            ]
-        }
 
     + valid (boolean)
+    
         More infos: 
-        {
-            "type": "boolean",
-            "required": true,
-            "read_only": false,
-            "label": "Valid"
-        }
+        
+                {
+                    "type": "boolean",
+                    "required": true,
+                    "read_only": false,
+                    "label": "Valid"
+                }
+                
     + publish (boolean)
-        {
-            "type": "boolean",
-            "required": true,
-            "read_only": false,
-            "label": "Publish",
-            "help_text": "Indicates if plan can be showed to everyone."
-        },
+    
+                {
+                    "type": "boolean",
+                    "required": true,
+                    "read_only": false,
+                    "label": "Publish",
+                    "help_text": "Indicates if plan can be showed to everyone."
+                }
+        
     + vat (number)
+    
         A positive integer between 1 and 100. More infos:
 
-        {
-            "type": "integer",
-            "required": true,
-            "read_only": false,
-            "label": "Vat",
-            "help_text": "Choose a value from 1 to 100.",
-            "min_value": 1,
-            "max_value": 100
-        }
+                {
+                    "type": "integer",
+                    "required": true,
+                    "read_only": false,
+                    "label": "Vat",
+                    "help_text": "Choose a value from 1 to 100.",
+                    "min_value": 1,
+                    "max_value": 100
+                }
 
 ### Update a Regular Plan [PUT]
 Users only can update a Regular Plan owns by him.
