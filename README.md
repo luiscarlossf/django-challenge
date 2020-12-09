@@ -122,7 +122,7 @@ You just need to type:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-_Please refer to the [Documentation]()_
+_Please refer to the [Documentation](https://github.com/luiscarlossf/django-challenge/wiki/Django-Challenge-API)_
 
 <!-- CONTACT -->
 ## Contact
