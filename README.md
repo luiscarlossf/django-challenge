@@ -10,7 +10,7 @@
 
   <p align="center">
     A Django project with a CRUD for the data set of Regular Plans.
-    <br />
+    <br/>
   </p>
 </p>
 
@@ -45,7 +45,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Django Challenge Screen Shot][api-screenshot]](https://github.com/luiscarlossf/django-challenge/screenshots/api_root.png)
 
 API for list, update and create Regular plans. When a use does a plan public, a notice e-mail will be send to user. Every 5 minutes a cronjob does a backup of data, copying data from PostegresDB to a MongoDB.
 
@@ -66,9 +66,18 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-You need things to use and run the software.
-* docker-compose
-* gmail account
+You need somethings to run and use the software.
+* Docker Compose
+
+See [Docker documentation](https://docs.docker.com/compose/install/) to install Docker Compose.
+* Gmail Account
+
+To send e-mail for users when a Regular Plan is public, we need a e-mail to access SMTP Gmail Server.
+1. Create a [Google account](https://accounts.google.com/signup/v2/webcreateaccount?service=accountsettings&continue=https%3A%2F%2Fmyaccount.google.com%2F&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp)
+2. Go to `Settings` and then `Forwardin POP/IMAP`
+3. Enable IMAP and Save editions.
+4. Access [here](https://myaccount.google.com/u/0/lesssecureapps?pli=1&rapt=AEjHL4OTUgsgQ56kedi8EINX35w-3ObeKavFNh_NutvB8iilFa3PTjjt4Gt-1O2FN3m7xBR9u2xYa9iEw4fOlp9Pxma4z1nPRg) 
+5. Enable `Allow less secure apps` option.
 
 ### Setup
 #### Cloning the repo
@@ -106,23 +115,16 @@ RABBITMQ_DEFAULT_PASS=
 ```
 
 ### How to run
-1. You just need type in your bash:
+
+You just need to type:
    ```sh
    docker-compose up
    ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-
-
-
+   
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+_Please refer to the [Documentation]()_
 
 <!-- CONTACT -->
 ## Contact
@@ -136,8 +138,11 @@ Project Link: [https://github.com/luiscarlossf/django-challenge](https://github.
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
-* []()
+* [Docker Documentation](https://docs.docker.com/)
+* [Django Rest Framewok Documentation](https://www.django-rest-framework.org/)
+* [Celery Documentation](https://docs.celeryproject.org/)
+* [Postgres Documentation](https://www.postgresql.org/docs/current/)
+* [Django Documentation](https://docs.djangoproject.com/)
+* [RabbitmMQ](https://www.rabbitmq.com/)
 
 
