@@ -118,6 +118,11 @@ RABBITMQ_DEFAULT_PASS=
 
 You just need to type:
   $ docker-compose up
+
+When all services are started, if you want to run the unittests:
+- Open new shell tab and execute the command
+
+  $ docker exec -t -it django_web_1 bash -c "python manage.py test"
    
 <!-- USAGE EXAMPLES -->
 ## Usage
