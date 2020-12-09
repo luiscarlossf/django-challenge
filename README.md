@@ -117,9 +117,7 @@ RABBITMQ_DEFAULT_PASS=
 ### How to run
 
 You just need to type:
-   ```sh
-   docker-compose up
-   ```
+  $ docker-compose up
    
 <!-- USAGE EXAMPLES -->
 ## Usage
