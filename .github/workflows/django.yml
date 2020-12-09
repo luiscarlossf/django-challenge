@@ -1,0 +1,47 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run Tests
+      env:
+        POSTGRES_DB: secrets.POSTGRES_DB
+        POSTGRES_HOST: secrets.POSTGRES_HOST
+        POSTGRES_TEST_DB: secrets.POSTGRES_TEST_DB
+        POSTGRES_USER: secrets.POSTGRES_USER
+        POSTGRES_PASSWORD: secrets.POSTGRES_PASSWORD
+        MONGO_INITDB_DATABASE: secrets.MONGO_INITDB_DATABASE
+        MONGO_INITDB_ROOT_USERNAME: secrets.MONGO_INITDB_ROOT_USERNAME
+        MONGO_INITDB_ROOT_PASSWORD: secrets.MONGO_INITDB_ROOT_PASSWORD
+        DJANGO_USER: secrets.DJANGO_USER
+        DJANGO_EMAIL: secrets.DJANGO_EMAIL
+        DJANGO_PASSWORD: secrets.DJANGO_PASSWORD
+        EMAIL_HOST_USER: secrets.EMAIL_HOST_USER
+        EMAIL_HOST_PASSWORD: secrets.EMAIL_HOST_PASSWORD
+        RABBITMQ_DEFAULT_VHOST: secrets.RABBITMQ_DEFAULT_VHOST
+        RABBITMQ_DEFAULT_USER: secrets.RABBITMQ_DEFAULT_USER
+        RABBITMQ_DEFAULT_PASS:  secrets.RABBITMQ_DEFAULT_PASS
+      run: |
+        python manage.py test
