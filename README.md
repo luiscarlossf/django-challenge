@@ -121,9 +121,9 @@ You just need to type:
 
 When all services are started, if you want to run the unittests:
 - Open new shell tab and execute the command
-
+```sh
   $ docker exec -t -it django_web_1 bash -c "python manage.py test"
-   
+```
 <!-- USAGE EXAMPLES -->
 ## Usage
 
