@@ -45,7 +45,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Django Challenge Screen Shot](https://github.com/luiscarlossf/django-challenge/screenshots/api_root.png)
+![Django Challenge Screen Shot](https://github.com/luiscarlossf/django-challenge/blob/main/screenshots/api_root.png)
 
 API for list, update and create Regular plans. When a use does a plan public, a notice e-mail will be send to user. Every 5 minutes a cronjob does a backup of data, copying data from PostegresDB to a MongoDB.
 
